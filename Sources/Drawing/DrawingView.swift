@@ -114,12 +114,13 @@ public struct DrawingView: View {
             }
             Divider()
     }
-    public func returnImage(completion: @escaping(Result<UIImage, Error>) -> ()) {
+    public func returnImage(completion: @escaping(Result<UIImage, Error>) -> (), bindingImage: Binding<UIImage?>) {
        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
           let window = windowScene.windows.first {
            guard let image = window.rootViewController?.view.asImage(rect: self.rect1) else {
                completion(.failure(NSError(domain: "No se logró tomar la imagen", code: 400)))
                return }
+           bindingImage.wrappedValue = image
            completion(.success(image))
        } else {
            completion(.failure(NSError(domain: "No se logró tomar la iamgen", code: 400)))
