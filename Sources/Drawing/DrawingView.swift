@@ -15,16 +15,17 @@ public struct DrawingView: View {
     @State public var lines: [LineModel] = []
     @State public var lineWidthSelect: Double = 1.0
     @State public var isSavingImage = false
-    @State public var uiimage: UIImage? = nil
+    @Binding public var uiimage: UIImage?
     @State public var activeLineWidth: Bool = false
     @State public var multipleColor: Bool = false
     @State public var rect1: CGRect = .zero
     @State public var colors: [Color] = [.black]
     @StateObject public var viewModel: DrawingViewModel = DrawingViewModel()
     
-    public init(activeLineWidth: Bool, multipleColor: Bool,colors: [Color]) {
+    public init(activeLineWidth: Bool, multipleColor: Bool,colors: [Color], uiimage: Binding<UIImage?>) {
         self.activeLineWidth = activeLineWidth
         self.colors = colors
+        self._uiimage = uiimage
     }
     
     public var body: some View {
@@ -65,6 +66,16 @@ public struct DrawingView: View {
                 }, label: {
                     Label("Limpiar", systemImage: "eraser.fill")
                 }).padding()
+            }
+            if uiimage != nil {
+                VStack {
+                    Text("Captura")
+                    Image(uiImage: self.uiimage!)
+                        .resizable()
+                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .padding(20)
+                        .border(Color.black)
+                }.padding(20)
             }
             
             Button(action: {
@@ -117,5 +128,5 @@ public struct DrawingView: View {
 }
 
 #Preview {
-    DrawingView(activeLineWidth: true, multipleColor: true, colors: [.black])
+    DrawingView(activeLineWidth: true, multipleColor: true, colors: [.black], uiimage: .constant(nil))
 }
