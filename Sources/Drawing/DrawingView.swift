@@ -80,14 +80,14 @@ public struct DrawingView: View {
             
             Button(action: {
                 print("ontapp")
-                returnImage { result in
-                    switch result {
-                        case .success(let success):
-                            self.uiimage = success
-                        case .failure(let failure):
-                            print(failure)
-                    }
-                }
+//                returnImage { result in
+//                    switch result {
+//                        case .success(let success):
+//                            self.uiimage = success
+//                        case .failure(let failure):
+//                            print(failure)
+//                    }
+//                }
             }) {
                 Text("Guardar imagen")
             }
