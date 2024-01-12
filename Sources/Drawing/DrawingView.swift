@@ -67,27 +67,27 @@ public struct DrawingView: View {
                     Label("Limpiar", systemImage: "eraser.fill")
                 }).padding()
             }
-//            if uiimage != nil {
-//                VStack {
-//                    Text("Captura")
-//                    Image(uiImage: self.uiimage!)
-//                        .resizable()
-//                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-//                        .padding(20)
-//                        .border(Color.black)
-//                }.padding(20)
-//            }
+            if uiimage != nil {
+                VStack {
+                    Text("Captura")
+                    Image(uiImage: self.uiimage!)
+                        .resizable()
+                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .padding(20)
+                        .border(Color.black)
+                }.padding(20)
+            }
             
             Button(action: {
                 print("ontapp")
-//                returnImage { result in
-//                    switch result {
-//                        case .success(let success):
-//                            self.uiimage = success
-//                        case .failure(let failure):
-//                            print(failure)
-//                    }
-//                }
+                returnImage { result in
+                    switch result {
+                        case .success(let success):
+                            self.uiimage = success
+                        case .failure(let failure):
+                            print(failure)
+                    }
+                }
             }) {
                 Text("Guardar imagen")
             }
@@ -114,14 +114,12 @@ public struct DrawingView: View {
             }
             Divider()
     }
-    public func returnImage(completion: @escaping(Result<UIImage, Error>) -> (), bindingImage: inout UIImage?) {
+    public func returnImage(completion: @escaping(Result<UIImage, Error>) -> ()) {
        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
           let window = windowScene.windows.first {
            guard let image = window.rootViewController?.view.asImage(rect: self.rect1) else {
                completion(.failure(NSError(domain: "No se logró tomar la imagen", code: 400)))
                return }
-           self.uiimage = image
-           bindingImage = uiimage
            completion(.success(image))
        } else {
            completion(.failure(NSError(domain: "No se logró tomar la iamgen", code: 400)))
