@@ -38,10 +38,7 @@ public struct DrawingView: View {
                 }
             }
             .background(RectGetterView(rect: $rect1))
-            .background(.white)
-            .clipShape(RoundedRectangle(cornerRadius: 15))
             .frame(minWidth: 200, minHeight: 200)
-            .shadow(radius: 15)
             .gesture(DragGesture(minimumDistance: 0, coordinateSpace: .local)
                 .onChanged({ value in
                     let newPoint = value.location
