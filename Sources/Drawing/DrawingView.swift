@@ -67,16 +67,16 @@ public struct DrawingView: View {
                     Label("Limpiar", systemImage: "eraser.fill")
                 }).padding()
             }
-            if uiimage != nil {
-                VStack {
-                    Text("Captura")
-                    Image(uiImage: self.uiimage!)
-                        .resizable()
-                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                        .padding(20)
-                        .border(Color.black)
-                }.padding(20)
-            }
+//            if uiimage != nil {
+//                VStack {
+//                    Text("Captura")
+//                    Image(uiImage: self.uiimage!)
+//                        .resizable()
+//                        .frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                        .padding(20)
+//                        .border(Color.black)
+//                }.padding(20)
+//            }
             
             Button(action: {
                 print("ontapp")
