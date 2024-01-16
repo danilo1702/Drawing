@@ -12,7 +12,7 @@ public struct DrawingView: View {
     
     
     @State public var currentLine = LineModel()
-    @State public var lines: [LineModel] = []
+    @Binding public var lines: [LineModel]
     @State public var lineWidthSelect: Double = 1.0
     @State public var isSavingImage = false
     @Binding public var uiimage: UIImage?
@@ -22,9 +22,10 @@ public struct DrawingView: View {
     @State public var colors: [Color] = [.black]
     @StateObject public var viewModel: DrawingViewModel = DrawingViewModel()
     
-    public init(activeLineWidth: Bool, multipleColor: Bool,colors: [Color], uiimage: Binding<UIImage?>) {
+    public init(activeLineWidth: Bool, multipleColor: Bool,colors: [Color], uiimage: Binding<UIImage?>, lines: Binding<[LineModel]>) {
         self.activeLineWidth = activeLineWidth
         self.colors = colors
+        self._lines = lines
         self._uiimage = uiimage
     }
     
@@ -128,5 +129,10 @@ public struct DrawingView: View {
 }
 
 #Preview {
-    DrawingView(activeLineWidth: true, multipleColor: true, colors: [.black], uiimage: .constant(nil))
+    
+    
+    DrawingView(activeLineWidth: true, multipleColor: true, colors: [.black], uiimage: .constant(nil), lines: ConstantsView().$lines)
 }
+
+
+

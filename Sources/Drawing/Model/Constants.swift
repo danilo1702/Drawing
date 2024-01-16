@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Constants {
     
@@ -19,5 +20,8 @@ struct Constants {
         static let trayCircleFill = "tray.circle.fill"
         static let circleFill = "circle.fill"
     }
-    
+}
+
+class ConstantsView {
+    @State var lines: [LineModel] = []
 }
