@@ -18,3 +18,23 @@ public struct LineModel {
         self.lineWidth = lineWidth
     }
 }
+
+public struct linesModelApi: Codable {
+    public var points: [PointsLineApi]
+    public var color: String
+    public var lineWidth: Double
+    public init(points: [PointsLineApi], color: String, lineWidth: Double) {
+        self.points = points
+        self.color = color
+        self.lineWidth = lineWidth
+    }
+}
+public struct PointsLineApi: Codable {
+    public var x: Double
+    public var y: Double
+    
+    public init(x: Double, y: Double) {
+        self.x = x
+        self.y = y
+    }
+}
